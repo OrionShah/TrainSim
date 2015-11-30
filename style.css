@@ -10,6 +10,7 @@
     height: 500px;
     border: 1px solid black;
     position: relative;
+    display: none;
 }
 
 .station  {
@@ -19,4 +20,8 @@
     /*margin: 10px;*/
     background-color: black;
     position: absolute;
+}
+.line {
+    position: absolute;
+    border:1px solid black;
 }
