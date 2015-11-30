@@ -28,24 +28,17 @@ $(document).ready(function() {
         ctx.fillRect(x, y, w, h);
     }
 
-
+    var getLenByCoords = function (x1, y1, x2, y2) {
+        x = Math.abs(x2-x1);
+        y = Math.abs(y2-y1);
+        len = Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
+        return len;
+    }
     var renderLine = function (x1, y1, x2, y2) {
         offset = 7;
         ctx.moveTo(x1+offset, y1+offset);
         ctx.lineTo(x2+offset, y2+offset);
         ctx.stroke();
-    //     x = x2-x1;
-    //     y = y2-y1;
-    //     rad2deg = 180/Math.PI;
-    //     rotate = Math.atan(y/x) * rad2deg;
-    //     len = Math.round(Math.sqrt(x^2+y^2));
-    //     console.log(len);
-    //     pos_x = x/2;
-    //     pos_y = y/2;
-    //     html = $('#map').html();
-    //     line_html = "<div class='line' style='top:" + pos_y*150 + "px;left:" + pos_x*150 + "px;width:" + len*15 + "px;transform:rotate(" + rotate + "deg)'></div>";
-    //     $('#map').html(html + line_html);
-
     }
     var clearing = function () {
         $('#info').html('');
@@ -57,6 +50,9 @@ $(document).ready(function() {
         ret = [];
         _.each(map, function (el) {
             if (el.x > x1 && el.x < x2 && el.y > y1 && el.y < y2) {
+                len = getLenByCoords(x1,y1,x2,y2);
+                console.log(x1,y1,x2,y2, len);
+                el.len = len;
                 ret.push(el);
             }
         });
@@ -67,7 +63,7 @@ $(document).ready(function() {
         _.each(map, function(el) {
             $('[name=' + el.name + ']').css('background-color', "black");
         });
-        local_offset = 50;
+        local_offset = 175;
         x1 = station.x-local_offset;
         x2 = station.x+local_offset;
         y1 = station.y-local_offset;
@@ -81,8 +77,6 @@ $(document).ready(function() {
             }
             
         });
-        // console.log('id' + station.id);
-        // console.log(around);
         return around;
     }
 
@@ -94,11 +88,11 @@ $(document).ready(function() {
                 id: i,
                 name: 'station' + i,
                 roads: [],
+                free: _.random(2, 7),
             };
             coords = getCoord();
             station.x = coords.x;
             station.y = coords.y;
-            // addInfo(JSON.stringify(station));
             map.push(station);
         }
     };
@@ -107,9 +101,9 @@ $(document).ready(function() {
         var coords = {}, x, y;
         status = true;
         while (status) {
-            y = _.random(0, 300);
-            x = _.random(0, 1000);
-            var local_offset = 30;
+            y = _.random(0, canvas.height-20);
+            x = _.random(0, canvas.width-20);
+            var local_offset = 100;
             around = search(x-local_offset, y-local_offset, x+local_offset, y+local_offset);
             if (_.isEmpty(around)) {
                 status = false;
@@ -124,15 +118,18 @@ $(document).ready(function() {
     var genRoads = function () {
         _.each(map, function (station) {
             around = searchAround(station);
-            console.log(around);
+            // console.log(around);
             _.each(around, function (s_station) {
-                // st1 = _.isEmpty(_.where(s_station.roads, station.id));
-                // st2 = _.isEmpty(_.where(station.roads, s_station.id));
+                st1 = _.isEmpty(_.where(s_station.roads, station.id));
+                st2 = _.isEmpty(_.where(station.roads, s_station.id));
                 if (station.id != s_station.id) {
                     road = _.random(0, 100);
-                    if (road > 1) {
+                    if (road > 1 && station.free > 0 && s_station.free > 0) {
                         station.roads.push(s_station.id);
                         s_station.roads.push(station.id);
+                        station.free--;
+                        s_station.free--;
+
                         renderLine(station.x, station.y, s_station.x, s_station.y);
                     }
                 }
@@ -142,18 +139,9 @@ $(document).ready(function() {
     }
 
     var renderMap = function () {
-        // var new_map = $('#newMap').svg('get');
-        // console.log(new_map);
-
         _.each(map, function(el) {
             addInfo(JSON.stringify(el));
             renderStation(el.x, el.y);
-
-            html = $('#map').html();
-            station_html = "<div class='station' name='" + el.name + "' style='top:" + el.y + "px; left: " + el.x + "px'></div>";
-            $('#map').html(html + station_html);
-
-            // new_map.rect(el.x*15, el.y*15, 15, 15);
         });
     };
 
