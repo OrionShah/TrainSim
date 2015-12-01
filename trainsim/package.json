@@ -1,0 +1,16 @@
+{
+  "name": "grunt-nw-app",
+  "toolbar": true,
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-nw-builder": "latest",
+    "grunt-node-webkit-builder": "latest"
+  },
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "jquery": "^2.1.4",
+    "konva": "^0.10.0",
+    "underscore": "^1.8.3"
+  }
+}
