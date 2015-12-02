@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var builder = require('gulp-nw-builder');
+var builder = require('nw-builder');
 
 // gulp.task('nw', function() {
 //   // return gulp.src(['./app/**/*', './node_modules/**/*'])
