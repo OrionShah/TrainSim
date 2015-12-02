@@ -4,7 +4,7 @@
   "devDependencies": {
     "grunt": "latest",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-nw-builder": "latest",
+    "grunt-nw-builder": "latest"
   },
   "dependencies": {
     "backbone": "^1.2.3",
