@@ -12,5 +12,15 @@
     "min_height": 200,
     "position": "center",
     "resizable": false
+  },
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-nw-builder": "latest"
+  },
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "jquery": "^2.1.4",
+    "konva": "^0.10.0",
+    "underscore": "^1.8.3"
   }
 }
