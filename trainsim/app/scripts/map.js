@@ -15,6 +15,16 @@ var map = function () {
         roads: [],
     };
 
+    self.getCurrentPath = function () {
+        dev = 1;
+        if (dev) {
+            path = process.cwd();
+        } else {
+            path = process.execPath;
+        }
+        return path;
+    }
+
     self.loadStationTemplates = function () {
         var file = fs.readFileSync('src/station.json', 'utf8');
         parsed = JSON.parse(file);
@@ -25,8 +35,9 @@ var map = function () {
     }
     self.saveMap = function (id) {
         if (!id) {
-            console.log(process.cwd() + '/maps/');
-            // fs.readdirSync(process.cwd() + '/maps/');
+            console.log(self.getCurrentPath() + '/maps/');
+            dir = fs.readdirSync(self.getCurrentPath() + '/maps/');
+            console.log(dir);
         }
 
     }
