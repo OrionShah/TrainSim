@@ -1,0 +1,171 @@
+[
+    {
+    "_comments": "//как вариант - автопоезд или электропоезд. По первому - статья на вики, говорящая о автоколоннах, Вторая - типа спецпути с ориентировкой на скорость"
+    },
+    {
+        "_comments": "// referrence - https://upload.wikimedia.org/wikipedia/commons/e/e6/Dresin_kongensgruve_kongsbe.jpg добавить уникальную версию наряду с пепелацом - https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Skansen_w_Chab%C3%B3wce_-_Drezyna_na_bazie_samochodu_Warszawa_M20.JPG/1280px-Skansen_w_Chab%C3%B3wce_-_Drezyna_na_bazie_samochodu_Warszawa_M20.JPG",
+        "id": 0,
+        "name": "Дрезина",
+        "speed": 10,
+        "cargo": 100,
+        "health": 50,
+        "armor": 0,
+        "_comments": "// защита от урона",
+        "passengers": 3,
+        "boost": false,
+        "_comments": "// +10 speed",
+        "borders": false,
+        "_comments": "// +100 cargo",
+        "light": false,
+        "_comments": "// снижение скорости убирается при езде ночью",
+        "armorplates": false,
+        "_comments": "// фрмор и всё такое"
+    },
+    {
+        "id": 1,
+        "name": "Вагонетка",
+        "_comments": "// referrence - https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Hunt_Sankt_Marienberg_Bruchhausen.jpg/1024px-Hunt_Sankt_Marienberg_Bruchhausen.jpg",
+        "speed": 5,
+        "cargo": 350,
+        "health": 60,
+        "armor": 0,
+        "passengers": 1,
+        "boost": false,
+        "_comments": "// +10 скорости",
+        "light": false,
+        "_comments": "// очевидно, реф к id 0"
+    },
+    {
+        "id": 2,
+        "name": "Паровоз Г",
+        "_comments": "// referrence - https://commons.wikimedia.org/wiki/File:Parovoz_R.jpg",
+        "speed": 50,
+        "cargo": 100,
+        "cargomax": 10800,
+        "health": 150,
+        "armor": 2,
+        "passengers": 3,
+        "_comments": "// модификатор вагонов",
+        "light": false,
+        "_comments": "// очевидно, реф к id 0",
+        "boiler": false,
+        "_comments": "// +15 скорости"
+    },
+    {
+        "id": 3,
+        "name": "Паровозъ",
+        "_comments": "// referrence - https://upload.wikimedia.org/wikipedia/ru/d/d2/%D0%9F%D0%B0%D1%80%D0%BE%D0%B2%D0%BE%D0%B7_%D1%82%D0%B8%D0%BF%D0%B0_%D0%AA.jpg",
+        "speed": 66,
+        "cargomax": 5090,
+        "health": 140,
+        "passengers": 3,
+        "boiler": false,
+        "_comments": "// +15 скорости",
+        "light": false,
+        "_comments": "// очевидно, реф к id 0"
+    },
+    {
+        "id": 4,
+        "name": "Паровоз Гр",
+        "_comments": "// referrence - https://upload.wikimedia.org/wikipedia/commons/6/63/Gr-336_steam_loco_Kiev_DZD.JPG",
+        "speed": 35,
+        "cargo": 56800,
+        "passengers": 2
+    },
+    {
+        "id": 5,
+        "name": "Паровоз ТК3-К5",
+        "_comments": "//referrence - https://upload.wikimedia.org/wikipedia/commons/6/60/%D0%93%D1%80%D1%83%D0%B7%D0%BE%D0%B2%D0%BE%D0%B9_%D0%BF%D0%B0%D1%80%D0%BE%D0%B2%D0%BE%D0%B7_%D0%A2%D0%BA%D0%97_1105_%281%29.jpg",
+        "speed": 60,
+        "cargo": 8040,
+        "passengers": 2
+    },
+    {
+        "id": 6,
+        "name": "Паровоз ОК22",
+        "_comments": "//referrence - https://upload.wikimedia.org/wikipedia/commons/8/80/Ok22-31_locomotive.jpg",
+        "speed": 100,
+        "cargo": 1275,
+        "passengers": 2
+    },
+    {
+        "id": 7,
+        "name": "Паровоз Юнион-Пасифик Челленджер",
+        "_comments": "//referrence - https://upload.wikimedia.org/wikipedia/commons/6/61/3985_entering_Eugene_%2841630796%29.jpg",
+        "speed": 110,
+        "cargo": 6950,
+        "passengers": 2
+    },
+    {
+        "id": 8,
+        "name": "Паровоз S100",
+        "_comments": "//referrence - https://upload.wikimedia.org/wikipedia/commons/4/4f/KESR_22_Maunsell_%28Southern_62%29.JPG",
+        "speed": 70,
+        "cargo": 1900,
+        "passengers": 2
+    },
+    {
+        "id": 9,
+        "name": "Паровоз QJ",
+        "_comments": "// referrence - https://upload.wikimedia.org/wikipedia/commons/b/b4/China_Railway_QJ_Steam_Locomotive_of_HO_Scale.jpg",
+        "speed": 80,
+        "cargo": 5420,
+        "passengers": 2
+    },
+    {
+        "id": 10,
+        "name": "Паровоз G8.1",
+        "_comments": "// referrence - https://upload.wikimedia.org/wikipedia/commons/d/dc/Hugh_llewelyn_55_3345_%285908828612%29.jpg",
+        "speed": 55,
+        "cargo": 1350,
+        "passengers": 2
+    },
+    {
+        "id": 800,
+        "name": "Пуля",
+        "_comments": "// referrence - http://img-kiev.fotki.yandex.ru/get/3108/myg2001.70/0_22954_f74bbb63_XL.jpg or - https://commons.wikimedia.org/wiki/File:2-3-2_Ворошиловград.jpg",
+        "speed": 180,
+        "cargo": 50,
+        "cargomax": 6900,
+        "passengers": 4
+    },
+    {
+        "id": 801,
+        "name": "ALCOта",
+        "_comments": "// referrence - https://upload.wikimedia.org/wikipedia/commons/7/71/Parovoz_Ta.jpg",
+        "speed": 65,
+        "cargo": 100,
+        "cargomax": 20930,
+        "passengers": 2
+    },
+    {
+        "id": 802,
+        "name": "Я",
+        "_comments": "// referrence - https://upload.wikimedia.org/wikipedia/commons/4/4d/Ya-01.jpg",
+        "speed": 65,
+        "cargo": 28810,
+        "passengers": 6
+    },
+    {
+        "id": 803,
+        "name": "Дрезина-Пепелац",
+        "speed": 200,
+        "cargo": 200,
+        "passengers": 5
+    },
+    {
+        "id": 900,
+        "name": "Пепелац на рельсах",
+        "speed": 500,
+        "cargo": 200,
+        "passengers": 5
+    },
+    {
+        "id": 901,
+        "name": "Знакомый паровоз",
+        "_comments": "//referrence - https://upload.wikimedia.org/wikipedia/commons/6/67/W%26A_No3.JPG",
+        "speed": 70,
+        "cargo": 4000,
+        "passengers": 1
+    }
+]
