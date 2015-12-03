@@ -16,3 +16,8 @@ body {
 #new_game {
     // display: none;
 }
+#map {
+    float: right;
+    margin: 20px;
+    margin-right: 100px;
+}

@@ -69,5 +69,11 @@ $(function() {
 
     var load_new_game = function () {
         map.generateMap();
-    }    
+        gui.renderMap($('#map'), map.mapObj);
+    }
+
+    $('#player').submit(function(event) {
+        event.preventDefault();
+        console.log(event.target);
+    });
 });

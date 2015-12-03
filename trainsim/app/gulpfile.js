@@ -33,11 +33,8 @@ gulp.task('nw', function () {
 	    buildDir: '../build'
 	});
 
-	//Log stuff you want
-
 	nw.on('log',  console.log);
 
-	// Build returns a promise
 	nw.build().then(function () {
 	   console.log('all done!');
 	}).catch(function (error) {

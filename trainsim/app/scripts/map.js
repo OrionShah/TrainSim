@@ -29,7 +29,6 @@ var map = function () {
         var file = fs.readFileSync('src/station.json', 'utf8');
         parsed = JSON.parse(file);
         self.stationTemplates = parsed;
-        console.log(parsed);
     }
     self.loadMap = function (id) {
         return self.stationTemplates;
@@ -42,10 +41,9 @@ var map = function () {
     }
 
     self.generateMap = function () {
-        
         self.generateStations();
         self.generateRoads();
-        self.printMapAsString();
+        // self.printMapAsString();
     }
 
     self.generateStations = function () {
@@ -73,12 +71,6 @@ var map = function () {
         });
     }
     self.generateRoads = function () {
-        // _.each(self.mapObj.stations, function (station) {
-        //     around = self.searchAround(station);
-        //     _.each(around, function (s_station) {
-
-        //     });
-        // });
         var c = 0;
         _.each(self.mapObj.stations, function (station) {
             around = self.searchAround(station);
@@ -92,7 +84,6 @@ var map = function () {
                             from: station.id,
                             to: s_station.id,
                             len: self.getLenByCoords(station.x, station.y, s_station.x, s_station.y),
-                            color: "#000",
                             level: _.random(1, 3),
                         };
                         s1 = _.isEmpty(_.where(self.mapObj.roads, {from: roadObj.from, to: roadObj.to}));
@@ -114,11 +105,11 @@ var map = function () {
 
     self.getCoord = function () {
         var coords = {}, x, y;
-        status = true;
+        // status = true;
         var local_offset = 75;
         counter = 0;
-        while (status) {
-            if (counter>100) {
+        while (true) {
+            if (counter>10000) {
                 break;
             }
             counter++;
@@ -126,7 +117,7 @@ var map = function () {
             x = _.random(20, self.gridSize.x-20);
             around = self.searchStationByCoords(x-local_offset, y-local_offset, x+local_offset, y+local_offset);
             if (_.isEmpty(around)) {
-                status = false;
+                // status = false;
                 break;
             }
         }

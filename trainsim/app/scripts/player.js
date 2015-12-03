@@ -7,10 +7,9 @@ var player = function () {
         name: "Player",
         lvl: 1,
         train: 1,
-        base: 17,
+        base: mill,
     };
     self.getParams = function () {
-        // console.log('fdfdsf');
         return self.params;
     };
 
