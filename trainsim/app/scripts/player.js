@@ -7,14 +7,25 @@ var player = function () {
         name: "Player",
         lvl: 1,
         train: 1,
-        base: mill,
+        base: null,
     };
+    self.getCurrentPath = function () {
+        dev = 1;
+        if (dev) {
+            path = process.cwd();
+        } else {
+            path = process.execPath;
+        }
+        return path;
+    }
     self.getParams = function () {
         return self.params;
     };
 
-    self.savePlayer = function () {
-
+    self.setPlayer = function (options) {
+        self.params.name = options.name;
+        self.params.base = options.base;
+        global.player = self.params;
     };
     self.loadPlayer = function () {
 

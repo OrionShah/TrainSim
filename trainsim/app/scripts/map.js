@@ -40,6 +40,14 @@ var map = function () {
         // }
     }
 
+    self.setMap = function () {
+        global.map = self.mapObj;
+    }
+
+    self.getMap = function () {
+        self.mapObj = global.map;
+    }
+
     self.generateMap = function () {
         self.generateStations();
         self.generateRoads();
@@ -53,6 +61,9 @@ var map = function () {
             var station = JSON.parse(JSON.stringify(_.findWhere(self.stationTemplates, {size: size_id})));
             station.id = i;
             station.roads = [];
+            station.point_size = station.size+3 * 4;
+            station.selected = false;
+            station.base = false;
             coords = self.getCoord();
             station.x = coords.x;
             station.y = coords.y;
@@ -109,15 +120,15 @@ var map = function () {
         var local_offset = 75;
         counter = 0;
         while (true) {
-            if (counter>10000) {
-                break;
-            }
             counter++;
-            y = _.random(20, self.gridSize.y-20);
-            x = _.random(20, self.gridSize.x-20);
+            y = _.random(20, self.gridSize.y-40);
+            x = _.random(20, self.gridSize.x-40);
             around = self.searchStationByCoords(x-local_offset, y-local_offset, x+local_offset, y+local_offset);
             if (_.isEmpty(around)) {
                 // status = false;
+                break;
+            }
+            if (counter>100000) {
                 break;
             }
         }
@@ -151,6 +162,17 @@ var map = function () {
         y = Math.abs(y2-y1);
         len = Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
         return len;
+    }
+
+    self.clearMap = function () {
+        self.mapObj = {
+            stations: [],
+            roads: [],
+        };
+    }
+    self.getSelectedStation = function () {
+        selected = _.findWhere(self.mapObj.stations, {selected: true});
+        return selected;
     }
 };
 module.exports = map;

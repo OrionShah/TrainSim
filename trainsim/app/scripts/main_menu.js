@@ -8,8 +8,8 @@ var map = new mapObj();
 var guiObj = require(process.cwd() + '/scripts/gui');
 var gui = new guiObj();
 
-// var PlayerObj = require(process.cwd() + '/scripts/player');
-// var player = new PlayerObj();
+var PlayerObj = require(process.cwd() + '/scripts/player');
+var player = new PlayerObj();
 
 // Создать пустое меню
 // var menu = new gui.Menu();
@@ -52,6 +52,7 @@ $(function() {
         {text:"Настройки", id: 2},
         {text:"Выход", id: 3},
     ];
+    gui.init();
     gui.renderMainMenu($('#menu'), MenuItems);
     
     $('.menu_link').click(function(event) {
@@ -69,11 +70,27 @@ $(function() {
 
     var load_new_game = function () {
         map.generateMap();
+        gui.renderNewGameMenu($('#new_game'));
         gui.renderMap($('#map'), map.mapObj);
     }
 
     $('#player').submit(function(event) {
-        event.preventDefault();
-        console.log(event.target);
+        event.preventDefault();        
+        var username = $('#player>input').val();
+        var base_station = map.getSelectedStation();
+        var player_info = {
+            name: username,
+            base: base_station.id,
+        };
+        base_station.base = true;
+        console.log(base_station);
+        player.setPlayer(player_info);
+        map.setMap();
+
+    });
+    $('#regenerate').click(function(event) {
+        map.clearMap();
+        map.generateMap();
+        gui.renderMap($('#map'), map.mapObj);   
     });
 });
