@@ -1,9 +1,12 @@
 var $ = require('jquery');
-var gui = require('nw.gui');
+var nwGUI = require('nw.gui');
 var fs = require('fs');
 var _ = require('underscore');
 var mapObj = require(process.cwd() + '/scripts/map');
 var map = new mapObj();
+
+var guiObj = require(process.cwd() + '/scripts/gui');
+var gui = new guiObj();
 
 // var PlayerObj = require(process.cwd() + '/scripts/player');
 // var player = new PlayerObj();
@@ -42,38 +45,29 @@ var map = new mapObj();
 // console.log(player.getParams());
 // $('body').append(JSON.stringify(player.getParams()));
 
-var MenuItems = [
-    {text:"Новая игра", id: 0},
-    {text:"Продолжить", id: 1},
-    {text:"Настройки", id: 2},
-    {text:"Выход", id: 3},
-];
+$(function() {    
+    var MenuItems = [
+        {text:"Новая игра", id: 0},
+        {text:"Продолжить", id: 1},
+        {text:"Настройки", id: 2},
+        {text:"Выход", id: 3},
+    ];
+    gui.renderMainMenu($('#menu'), MenuItems);
+    
+    $('.menu_link').click(function(event) {
+        switch (event.target.id) {
+            case '0':
+                $('#new_game').show();
+                load_new_game();
+                break;
 
-var renderMenu = function () {
-    $('#menu').html('<ul></ul>');
-    _.each(MenuItems, function(item) {
-        item_html = "<li class='menu_link' id='" + item.id + "'>" + item.text + "</li>";
-        $('#menu>ul').append(item_html);
+            default: 
+                $('#new_game').hide();
+                break;
+        }
     });
-    $('#new_game').hide();
-}
-renderMenu();
 
-global.my_var = 13213213;
-
-$('.menu_link').click(function(event) {
-    switch (event.target.id) {
-        case '0':
-            $('#new_game').show();
-            load_new_game();
-            break;
-
-        default: 
-            $('#new_game').hide();
-            break;
-    }
+    var load_new_game = function () {
+        map.generateMap();
+    }    
 });
-
-var load_new_game = function () {
-    map.generateMap();
-}

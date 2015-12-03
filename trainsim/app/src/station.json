@@ -9,7 +9,7 @@
         "name" : "сельская станция",
         "size": 1,
         "NumsRoads": 2,
-        "freeRoads": 1,
+        "freeRoads": 2,
         "health": 20,
         "defense": 10
     },
@@ -17,7 +17,7 @@
         "name" : "станция обслуживания",
         "size": 2,
         "NumsRoads": 3,
-        "freeRoads": 1,
+        "freeRoads": 2,
         "health": 40,
         "defense": 25
     },
@@ -25,7 +25,7 @@
         "name" : "пригородная станция",
         "size": 3,
         "NumsRoads": 5,
-        "freeRoads": 2,
+        "freeRoads": 3,
         "health": 60,
         "defense": 40
     },
@@ -33,7 +33,7 @@
         "name" : "городская станция",
         "size": 4,
         "NumsRoads": 7,
-        "freeRoads": 3,
+        "freeRoads": 4,
         "health": 80,
         "defense": 50
     },
@@ -41,7 +41,7 @@
         "name" : "станция мегаполиса",
         "size": 5,
         "NumsRoads": 9,
-        "freeRoads": 3,
+        "freeRoads": 6,
         "health": 100,
         "defense": 70
     }
