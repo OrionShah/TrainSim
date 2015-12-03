@@ -1,6 +1,3 @@
-body {
-    
-}
 .menu_link {
     display: inline-block;
     border: 1px solid black;
@@ -14,7 +11,7 @@ body {
     color: #fff;
 }
 #new_game {
-    // display: none;
+    /*display: none;*/
 }
 #map {
     float: right;

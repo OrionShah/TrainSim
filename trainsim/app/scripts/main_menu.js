@@ -72,7 +72,7 @@ $(function() {
         map.generateMap();
         gui.renderNewGameMenu($('#new_game'));
         gui.renderMap($('#map'), map.mapObj);
-    }
+    };
 
     $('#player').submit(function(event) {
         event.preventDefault();        

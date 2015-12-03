@@ -18,15 +18,15 @@ var giu = function () {
 
     self.init = function () {
         $('#new_game').hide();
-    }
+    };
 
     self.renderMainMenu = function (element, data) {
         element.html('<ul></ul>');
         _.each(data, function(item) {
-            item_html = "<li class='menu_link' id='" + item.id + "'>" + item.text + "</li>";
+            var item_html = "<li class='menu_link' id='" + item.id + "'>" + item.text + "</li>";
             $(element.selector+">ul").append(item_html);
         });
-    }
+    };
 
     self.renderMap = function (element, map) {
 
@@ -47,12 +47,16 @@ var giu = function () {
         }
         self.canvas_elements.map.roads = new Konva.Layer();
         _.each(map.roads, function(road) {
-            st1 = _.findWhere(map.stations, {id: road.from});
-            st2 = _.findWhere(map.stations, {id: road.to});
-            offset = 0;
+            var st1 = _.findWhere(map.stations, {id: road.from}),
+                st2 = _.findWhere(map.stations, {id: road.to});
             var el = new Konva.Line({
                 id: road.id,
-                points: [st1.x/2+st1.point_size/2, st1.y/2+st1.point_size/2, st2.x/2+st2.point_size/2, st2.y/2+st2.point_size/2],
+                points: [
+                    st1.x/2+st1.point_size/2,
+                    st1.y/2+st1.point_size/2,
+                    st2.x/2+st2.point_size/2,
+                    st2.y/2+st2.point_size/2
+                ],
                 stroke: 'black',
                 strokeWidth: road.level
             });
@@ -84,11 +88,11 @@ var giu = function () {
         self.canvas_elements.map.roads.draw();
         self.canvas_elements.map_stage.add(self.canvas_elements.map.stations);
         self.canvas_elements.map.stations.draw();
-    }
+    };
 
     self.renderNewGameMenu = function () {
         $('#new_game').show();
-    }
-}
+    };
+};
 
 module.exports = giu;

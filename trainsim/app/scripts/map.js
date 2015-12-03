@@ -16,47 +16,47 @@ var map = function () {
     };
 
     self.getCurrentMapPath = function () {
-        dev = 1;
+        var dev = 1;
         if (dev) {
             path = process.cwd();
         } else {
             path = process.execPath;
         }
         return path;
-    }
+    };
 
     self.loadStationTemplates = function () {
-        var file = fs.readFileSync('src/station.json', 'utf8');
-        parsed = JSON.parse(file);
+        var file = fs.readFileSync('src/station.json', 'utf8'),
+            parsed = JSON.parse(file);
         self.stationTemplates = parsed;
-    }
-    self.loadMap = function (id) {
+    };
+    self.loadMap = function () {
         return self.stationTemplates;
-    }
-    self.saveMap = function (id) {
+    };
+    self.saveMap = function () {
         // if (!id) {
             // console.log(self.getCurrentMapPath() + '/maps/');
             // dir = fs.readdirSync(self.getCurrentMapPath() + '/maps/');
         // }
-    }
+    };
 
     self.setMap = function () {
         global.map = self.mapObj;
-    }
+    };
 
     self.getMap = function () {
         self.mapObj = global.map;
-    }
+    };
 
     self.generateMap = function () {
         self.generateStations();
         self.generateRoads();
         // self.printMapAsString();
-    }
+    };
 
     self.generateStations = function () {
         self.loadStationTemplates();
-        for (i = 0; i < self.stations; i++) {
+        for (var i = 0; i < self.stations; i++) {
             var size_id = _.random(0, 5);
             var station = JSON.parse(JSON.stringify(_.findWhere(self.stationTemplates, {size: size_id})));
             station.id = i;
@@ -64,12 +64,12 @@ var map = function () {
             station.point_size = station.size+3 * 4;
             station.selected = false;
             station.base = false;
-            coords = self.getCoord();
+            var coords = self.getCoord();
             station.x = coords.x;
             station.y = coords.y;
             self.mapObj.stations.push(station);
-        };
-    }
+        }
+    };
 
     self.printMapAsString = function () {
         $('#new_game').append("STATIONS:<br>");
@@ -80,14 +80,14 @@ var map = function () {
         _.each(self.mapObj.roads, function (road) {
             $('#new_game').append(JSON.stringify(road)+"<br>");
         });
-    }
+    };
     self.generateRoads = function () {
         var c = 0;
         _.each(self.mapObj.stations, function (station) {
-            around = self.searchAround(station);
+            var around = self.searchAround(station);
             _.each(around, function (s_station) {
-                st1 = _.isEmpty(_.where(s_station.roads, station.id));
-                st2 = _.isEmpty(_.where(station.roads, s_station.id));
+                // var st1 = _.isEmpty(_.where(s_station.roads, station.id)),
+                //     st2 = _.isEmpty(_.where(station.roads, s_station.id));
                 if (station.id !== s_station.id) {
                     if (station.freeRoads > 0 && s_station.freeRoads > 0) {
                         var roadObj = {
@@ -97,8 +97,8 @@ var map = function () {
                             len: self.getLenByCoords(station.x, station.y, s_station.x, s_station.y),
                             level: _.random(1, 3),
                         };
-                        s1 = _.isEmpty(_.where(self.mapObj.roads, {from: roadObj.from, to: roadObj.to}));
-                        s2 = _.isEmpty(_.where(self.mapObj.roads, {from: roadObj.to, to: roadObj.from}));
+                        var s1 = _.isEmpty(_.where(self.mapObj.roads, {from: roadObj.from, to: roadObj.to})),
+                            s2 = _.isEmpty(_.where(self.mapObj.roads, {from: roadObj.to, to: roadObj.from}));
                         if (s1 && s2) {
                             self.mapObj.roads.push(roadObj);
                             station.roads.push(s_station.id);
@@ -112,18 +112,18 @@ var map = function () {
                 
             });
         });
-    }
+    };
 
     self.getCoord = function () {
         var coords = {}, x, y;
         // status = true;
-        var local_offset = 75;
-        counter = 0;
+        var local_offset = 75,
+            counter = 0;
         while (true) {
             counter++;
             y = _.random(20, self.gridSize.y-40);
             x = _.random(20, self.gridSize.x-40);
-            around = self.searchStationByCoords(x-local_offset, y-local_offset, x+local_offset, y+local_offset);
+            var around = self.searchStationByCoords(x-local_offset, y-local_offset, x+local_offset, y+local_offset);
             if (_.isEmpty(around)) {
                 // status = false;
                 break;
@@ -135,10 +135,10 @@ var map = function () {
         coords.x = x;
         coords.y = y;
         return coords;
-    }
+    };
 
     self.searchStationByCoords = function (x1, y1, x2, y2) {
-        ret = [];
+        var ret = [];
         _.each(self.mapObj.stations, function (el) {
             if (el.x > x1 && el.x < x2 && el.y > y1 && el.y < y2) {
                 ret.push(el);
@@ -148,31 +148,31 @@ var map = function () {
     };
 
     self.searchAround = function (station) {
-        local_offset = 175;
-        x1 = station.x-local_offset;
-        x2 = station.x+local_offset;
-        y1 = station.y-local_offset;
-        y2 = station.y+local_offset;
+        var local_offset = 175,
+            x1 = station.x-local_offset,
+            x2 = station.x+local_offset,
+            y1 = station.y-local_offset,
+            y2 = station.y+local_offset,
         around = self.searchStationByCoords(x1, y1, x2, y2);
         return around;
-    }
+    };
 
     self.getLenByCoords = function (x1, y1, x2, y2) {
-        x = Math.abs(x2-x1);
-        y = Math.abs(y2-y1);
-        len = Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
+        var x = Math.abs(x2-x1),
+            y = Math.abs(y2-y1),
+            len = Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
         return len;
-    }
+    };
 
     self.clearMap = function () {
         self.mapObj = {
             stations: [],
             roads: [],
         };
-    }
+    };
     self.getSelectedStation = function () {
-        selected = _.findWhere(self.mapObj.stations, {selected: true});
+        var selected = _.findWhere(self.mapObj.stations, {selected: true});
         return selected;
-    }
+    };
 };
 module.exports = map;

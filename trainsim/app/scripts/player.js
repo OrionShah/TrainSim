@@ -10,14 +10,14 @@ var player = function () {
         base: null,
     };
     self.getCurrentPath = function () {
-        dev = 1;
+        var dev = 1, path;
         if (dev) {
             path = process.cwd();
         } else {
             path = process.execPath;
         }
         return path;
-    }
+    };
     self.getParams = function () {
         return self.params;
     };
@@ -29,6 +29,6 @@ var player = function () {
     };
     self.loadPlayer = function () {
 
-    }
+    };
 };
 module.exports = player;
